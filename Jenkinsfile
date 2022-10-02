@@ -34,7 +34,7 @@ pipeline {
         
             }
             sh "cp target/simulator-99-SNAPSHOT.jar test/simulator.jar"
-            sh "cp tests_full.txt test/tests.txt"
+            sh "cp tests-full.txt test/tests.txt"
             dir('test'){
                 sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
             }
