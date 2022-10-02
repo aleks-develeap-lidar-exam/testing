@@ -35,7 +35,7 @@ pipeline {
         
             }
             sh "cp target/simulator-99-SNAPSHOT.jar test/simulator.jar"
-            sh "split -n 6 -a 1 -x tests-full.txt test"
+            sh "split -l 50 -a 1 -x tests-full.txt test "
 
         }
     }
