@@ -19,7 +19,7 @@ pipeline {
       }
     }
 
-    stage('E2E tests'){
+    stage('Files for E2E tests'){
         steps{
             sh "mkdir -p test"  
             
@@ -34,8 +34,14 @@ pipeline {
         
             }
             sh "cp target/simulator-99-SNAPSHOT.jar test/simulator.jar"
-            sh "split -n 4 -a 1 -x tests-full.txt test"
-            parallel{
+            sh "split -n 4 -a 1 -x tests-full.txt test
+
+        }
+    }
+
+    stage('E2E tests'){
+        steps{
+                        parallel{
                 stage('Tests0'){
                     steps{
                         sh "cp test0 test/tests.txt"
@@ -69,9 +75,6 @@ pipeline {
                     }
                 }
             }
-
-            sh "rm -r test"
-
         }
     }
 
