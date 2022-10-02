@@ -21,7 +21,7 @@ pipeline {
 
     stage('E2E tests'){
         steps{
-            sh "mkdir test"  
+            sh "mkdir -p test"  
             
             withCredentials([usernamePassword(credentialsId: 'aleks_jfrog', passwordVariable: 'password', usernameVariable: 'myUser')]) {
             script{
