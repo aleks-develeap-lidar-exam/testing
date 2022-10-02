@@ -35,7 +35,7 @@ pipeline {
         
             }
             sh "cp target/simulator-99-SNAPSHOT.jar test/simulator.jar"
-            sh "split -n 4 -a 1 -x tests-full.txt test"
+            sh "split -n 6 -a 1 -x tests-full.txt test"
 
         }
     }
@@ -79,6 +79,26 @@ pipeline {
                         sh "cp -R test/* testd"
                         sh "cp test3 testd/tests.txt"
                         dir('testd'){
+                        sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
+                        }
+                    }
+                }
+                stage('Tests4'){
+                    steps{
+                        sh "mkdir teste"
+                        sh "cp -R test/* teste"
+                        sh "cp test4 teste/tests.txt"
+                        dir('testa'){
+                        sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
+                        }
+                    }
+                }
+                stage('Tests5'){
+                    steps{
+                        sh "mkdir testf"
+                        sh "cp -R test/* testf"
+                        sh "cp test5 testf/tests.txt"
+                        dir('testf'){
                         sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
                         }
                     }
