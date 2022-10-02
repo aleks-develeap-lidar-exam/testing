@@ -34,10 +34,42 @@ pipeline {
         
             }
             sh "cp target/simulator-99-SNAPSHOT.jar test/simulator.jar"
-            sh "cp tests-full.txt test/tests.txt"
-            dir('test'){
-                sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
+            sh "split -n 4 -a 1 -x tests-full.txt test"
+            parallel{
+                stage('Tests0'){
+                    steps{
+                        sh "cp test0 test/tests.txt"
+                        dir('test'){
+                        sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
+                        }
+                    }
+                }
+                stage('Tests1'){
+                    steps{
+                        sh "cp test1 test/tests.txt"
+                        dir('test'){
+                        sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
+                        }
+                    }
+                }
+                                stage('Tests2'){
+                    steps{
+                        sh "cp test2 test/tests.txt"
+                        dir('test'){
+                        sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
+                        }
+                    }
+                }
+                                stage('Tests3'){
+                    steps{
+                        sh "cp test3 test/tests.txt"
+                        dir('test'){
+                        sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
+                        }
+                    }
+                }
             }
+
             sh "rm -r test"
 
         }
