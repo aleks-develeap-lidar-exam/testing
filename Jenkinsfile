@@ -30,7 +30,7 @@ pipeline {
             ANALYTICS_VERSION = sh(returnStdout: true, script: "curl -u $myUser:$password http://artifactory:8082/artifactory/exam-libs-release-local/com/lidar/analytics/maven-metadata.xml | grep '<version>' | tail -1 | grep -o '[0-9].[0-9].[0-9]'").trim()
             }              
             sh "curl -u $myUser:$password http://artifactory:8082/artifactory/exam-libs-release-local/com/lidar/telemetry/${TELEMETRY_VERSION}/telemetry-${TELEMETRY_VERSION}.jar --output test/telemetry.jar"
-            sh "curl -u $myUser:$password http://artifactory:8082/artifactory/exam-libs-release-local/com/lidar/analytics/${ANALYTICS_VERSION}/telemetry-${ANALYTICS_VERSION}.jar --output test/analytics.jar"
+            sh "curl -u $myUser:$password http://artifactory:8082/artifactory/exam-libs-release-local/com/lidar/analytics/${ANALYTICS_VERSION}/analytics-${ANALYTICS_VERSION}.jar --output test/analytics.jar"
         
             }
             sh "cp target/simulator-99-SNAPSHOT.jar test/simulator.jar"
