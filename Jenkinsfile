@@ -45,36 +45,40 @@ pipeline {
         parallel{
                 stage('Tests0'){
                     steps{
-                        sh "cp -R test/* test0"
-                        sh "cp test0 test0/tests.txt"
-                        dir('test'){
+                        sh "mkdir testa"
+                        sh "cp -R test/* testa"
+                        sh "cp test0 testa/tests.txt"
+                        dir('testa'){
                         sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
                         }
                     }
                 }
                 stage('Tests1'){
                     steps{
-                        sh "cp -R test/* test1"
-                        sh "cp test1 test1/tests.txt"
-                        dir('test'){
+                        sh "mkdir testb"
+                        sh "cp -R test/* testb"
+                        sh "cp test1 testb/tests.txt"
+                        dir('testb'){
                         sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
                         }
                     }
                 }
                 stage('Tests2'){
                     steps{
-                        sh "cp -R test/* test2"
-                        sh "cp test2 test2/tests.txt"
-                        dir('test'){
+                        sh "mkdir testc"
+                        sh "cp -R test/* testc"
+                        sh "cp test2 testc/tests.txt"
+                        dir('testc'){
                         sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
                         }
                     }
                 }
                                 stage('Tests3'){
                     steps{
-                        sh "cp -R test/* test3"
-                        sh "cp test3 tes3/tests.txt"
-                        dir('test'){
+                        sh "mkdir testd"
+                        sh "cp -R test/* testd"
+                        sh "cp test3 testd/tests.txt"
+                        dir('testd'){
                         sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
                         }
                     }
