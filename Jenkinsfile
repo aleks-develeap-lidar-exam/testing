@@ -15,6 +15,7 @@ pipeline {
  
     stage('Build') {
       steps {
+        cleanWs()
         sh "mvn verify"
       }
     }
@@ -44,7 +45,8 @@ pipeline {
         parallel{
                 stage('Tests0'){
                     steps{
-                        sh "cp test0 test/tests.txt"
+                        sh "cp -R test/* test0"
+                        sh "cp test0 test0/tests.txt"
                         dir('test'){
                         sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
                         }
@@ -52,15 +54,17 @@ pipeline {
                 }
                 stage('Tests1'){
                     steps{
-                        sh "cp test1 test/tests.txt"
+                        sh "cp -R test/* test1"
+                        sh "cp test1 test1/tests.txt"
                         dir('test'){
                         sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
                         }
                     }
                 }
-                                stage('Tests2'){
+                stage('Tests2'){
                     steps{
-                        sh "cp test2 test/tests.txt"
+                        sh "cp -R test/* test2"
+                        sh "cp test2 test2/tests.txt"
                         dir('test'){
                         sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
                         }
@@ -68,7 +72,8 @@ pipeline {
                 }
                                 stage('Tests3'){
                     steps{
-                        sh "cp test3 test/tests.txt"
+                        sh "cp -R test/* test3"
+                        sh "cp test3 tes3/tests.txt"
                         dir('test'){
                         sh "java -cp simulator.jar:analytics.jar:telemetry.jar com.lidar.simulation.Simulator"
                         }
