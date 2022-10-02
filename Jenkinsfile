@@ -15,7 +15,7 @@ pipeline {
  
     stage('Build') {
       steps {
-        cleanWs()
+     
         sh "mvn verify"
       }
     }
@@ -87,6 +87,7 @@ pipeline {
         steps {
             configFileProvider([configFile(fileId: 'exam_maven_settings', variable: 'SETTINGS')]) {
             sh "mvn deploy -s $SETTINGS -Dmaven.test.skip"
+            cleanWs()
             }
         }
     }
