@@ -40,8 +40,8 @@ pipeline {
     }
 
     stage('E2E tests'){
-        steps{
-                        parallel{
+
+        parallel{
                 stage('Tests0'){
                     steps{
                         sh "cp test0 test/tests.txt"
@@ -75,7 +75,7 @@ pipeline {
                     }
                 }
             }
-        }
+        
     }
 
     stage('Publish') {
